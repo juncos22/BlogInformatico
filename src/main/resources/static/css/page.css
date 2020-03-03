@@ -1,0 +1,32 @@
+.jumb-index {
+    background-image: url("/images/mbr-1-1920x1280.jpg");
+}
+
+
+.jumb-info {
+    background-image: url("/images/mbr-1920x1357.jpg");
+}
+
+.jumb-perfil {
+    background-image: url("/images/mbr-1920x960.jpg");
+}
+
+body {
+    background-color: #0d0d0d;
+}
+
+form {
+    background-color: #4d4d4d;
+    border-radius: 10px;
+    width: 500px;
+    margin: auto;
+    padding: 15px;
+    color: #00b8e3;
+}
+
+footer {
+    background-color: #4d4d4d;
+    height: 90px;
+    padding: 15px;
+    text-align: center;
+}

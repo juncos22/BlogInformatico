@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="master/elements :: head-fragment"></div>
+    <title>Perfil</title>
+</head>
+<body>
+<div th:replace="master/elements :: menu-fragment"></div>
+
+<div class="container-fluid mt-5">
+    <div class="row">
+        <div class="col-md-4">
+            <h3 class="text-center text-white">Datos de Perfil</h3>
+            <div class="jumbotron jumb-perfil" th:if="${usuario}">
+                <div class="text-center">
+                    <img class="img-thumbnail" width="100" height="100"
+                         th:src="@{'/archivos/' + ${usuario.fotoUsuario}}" alt="foto">
+                </div>
+                <h1 class="display-3 text-white text-center" th:text="${usuario.nombre}"></h1>
+                <p class="lead text-white text-center">
+                    Email: <span th:text="${usuario.email}"></span> <br>
+                    Fecha de Nacimiento: <span th:text="${usuario.fechaNacimiento}"></span>
+                </p>
+                <hr class="my-2">
+                <p class="text-white text-center">Detalles</p>
+                <p class="lead text-center">
+                    <a class="btn btn-primary btn-lg" href="#" role="button">VER DETALLES</a>
+                </p>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <h3 class="text-center text-white">Nueva Publicacion</h3>
+            <form th:object="${post}" th:action="@{/posts/publicar}" method="post">
+                <div class="form-group">
+                    <label for="titulo">TITULO</label>
+                    <input required type="text" th:field="*{titulo}" id="titulo" class="form-control" placeholder="Titulo del Post">
+                </div>
+                <div class="form-group">
+                    <label for="categoria">CATEGORIA</label>
+                    <select class="form-control" th:field="*{categoria}" id="categoria" required>
+                        <div th:each="cat : ${categorias}">
+                            <option th:text="${cat.tipo}" th:value="${cat.id}"></option>
+                        </div>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="descripcion">DESCRIPCION</label>
+                    <textarea required type="text" rows="5" cols="10" th:field="*{descripcion}" id="descripcion"
+                              class="form-control" placeholder="Descripcion del Post"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="contenido">CONTENIDO</label>
+                    <textarea required type="text" rows="10" cols="50" th:field="*{contenido}" id="contenido"
+                              class="form-control" placeholder="Contenido del Post"></textarea>
+                </div>
+                <button type="submit" class="btn btn-success btn-block">PUBLICAR</button>
+            </form>
+        </div>
+    </div>
+    <h3 class="text-center text-white mt-3">Publicaciones de <span th:text="${usuario.nombre}"></span></h3>
+    <div class="row m-3">
+        <div class="col-md-4" th:each="p : ${posts}">
+            <div class="card text-white bg-dark">
+                <div class="card-body">
+                    <h4 class="card-title" th:text="${p.titulo}"></h4>
+                    <p class="card-text" th:text="${p.descripcion}"></p>
+                    <p class="card-text" th:text="${p.fechaCreacion}"></p>
+                    <a th:href="@{/posts/detalles(id=${p.id})}" class="btn btn-outline-info btn-block">LEER</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="master/elements :: footer-fragment"></div>
+</body>
+</html>

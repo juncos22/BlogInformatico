@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="master/elements :: head-fragment"></div>
+    <title>Detalles del Usuario</title>
+</head>
+<body>
+<div th:replace="master/elements :: menu-fragment"></div>
+
+<div class="container-fluid m-3">
+    <h3 class="text-center text-white">Posts de <span th:text="${usuario.nombre}"></span></h3>
+    <div class="row">
+        <div class="col-md-3" th:each="post : ${usuario.posts}">
+            <div class="card border-primary">
+                <img class="card-img-top" th:src="@{'/archivos/' + ${usuario.fotoUsuario}}" alt="foto">
+                <div class="card-body">
+                    <h4 class="card-title" th:text="${post.titulo}"></h4>
+                    <p class="card-text" th:text="${post.descripcion}"></p>
+                    <hr class="my-2">
+                    <a th:href="@{/posts/detalles(id=${post.id})}"
+                       class="btn btn-primary btn-block active" role="button">LEER POST</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="master/elements :: footer-fragment"></div>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:fragment="head-fragment">
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <link rel="stylesheet" th:href="@{/css/page.css}">
+        <link rel="shortcut icon" th:href="@{/images/favicon.ico}" type="image/x-icon">
+    </div>
+</head>
+<body>
+<nav th:fragment="menu-fragment" class="navbar navbar-expand-md navbar-dark bg-dark" style="background-color: #e3f2fd;">
+    <a class="navbar-brand" href="/">
+        <img th:src="@{/images/favicon-90x90.png}" width="45" height="45" alt="logo" class="img-thumbnail">
+        El Blog del Informatico
+    </a>
+    <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
+            aria-controls="collapsibleNavId"
+            aria-expanded="false" aria-label="Toggle navigation"></button>
+    <div class="collapse navbar-collapse" id="collapsibleNavId">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+                <a class="nav-link" th:href="@{/}">
+                    <i class="fa fa-home" aria-hidden="true"></i> Home <span class="sr-only">(current)</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/info}">
+                    <i class="fa fa-info" aria-hidden="true"></i> Info
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/posts/recientes}">
+                    <i class="fa fa-clipboard" aria-hidden="true"></i> Posts Recientes
+                </a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="dropdownId"
+                   data-toggle="dropdown" aria-haspopup="true"
+                   aria-expanded="false">
+                    <i class="fa fa-user-circle" aria-hidden="true"></i> Perfil
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdownId">
+                    <a th:if="${#httpServletRequest.remoteUser} == null"
+                       class="dropdown-item" th:href="@{/login}">
+                        <i class="fa fa-unlock-alt" aria-hidden="true"></i> Iniciar Sesion
+                    </a>
+                    <a th:if="${#httpServletRequest.remoteUser} == null"
+                       class="dropdown-item" th:href="@{/registro}">
+                        <i class="fa fa-user" aria-hidden="true"></i> Registrarse
+                    </a>
+                    <a th:if="${#httpServletRequest.remoteUser}"
+                       class="dropdown-item" th:href="@{/perfil}">
+                        <i class="fa fa-info-circle" aria-hidden="true"></i> Detalles
+                    </a>
+                    <a th:if="${#httpServletRequest.remoteUser}"
+                       class="dropdown-item" th:href="@{/logout}">
+                        <i class="fa fa-lock" aria-hidden="true"></i> Cerrar Sesion
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+
+<div th:fragment="footer-fragment">
+    <footer class="text-white">
+        <p>Copyright &copy; <span th:text="${#dates.createNow().toString().substring(23, 28)}"></span> - Derechos Reservados</p>
+        <a href="https://www.linkedin.com/in/nicolas-juncos-8b4b90196/" target="_blank">
+            <i class="fa fa-linkedin" aria-hidden="true"></i>
+        </a>
+        <a href="https://github.com/juncos22" target="_blank">
+            <i class="fa fa-github" aria-hidden="true"></i>
+        </a>
+    </footer>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+</div>
+</body>
+</html>

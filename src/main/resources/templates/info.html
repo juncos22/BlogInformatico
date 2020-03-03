@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="master/elements :: head-fragment"></div>
+    <title>Info</title>
+</head>
+<body>
+<div th:replace="master/elements :: menu-fragment"></div>
+
+<div class="container-fluid">
+	<div class="jumbotron jumbotron-fluid jumb-info">
+		<div class="container text-center text-white">
+			<h1 class="display-3">Info del Sitio</h1>
+			<p class="lead">
+				El Blog del Informatico es un sitio web donde
+				vas a poder subir o visualizar articulos de indole informatica
+				como Programacion, Diseño Web, Bases de Datos, Data Science,
+				Machine Learning, Internet of Things, Seguridad Informatica
+				(penetration testing), entre otros temas interesantes.
+			</p>
+			<hr class="my-2">
+			<a href="#" class="btn btn-lg btn-info">COMENZAR</a>
+		</div>
+	</div>
+</div>
+
+<div th:replace="master/elements :: footer-fragment"></div>
+</body>
+</html>

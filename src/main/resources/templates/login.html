@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<div th:replace="master/elements :: head-fragment"></div>
+	<title>Login</title>
+</head>
+<body>
+<div th:replace="master/elements :: menu-fragment"></div>
+
+<div class="container-fluid">
+    <div class="row mt-5">
+        <div class="col-md-4">
+            <br><br>
+            <img th:src="@{/images/mbr-1048x699.jpg}" alt="Mobirise"
+                 width="524.7496423462089" height="350"
+                 class="img-thumbnail">
+        </div>
+
+        <div class="col-md-8">
+            <h2 class="text-center text-white">Iniciar Sesion</h2>
+            <form th:action="@{/login}" method="post">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input class="form-control" type="email" name="email" placeholder="Email"
+                           required id="email">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input class="form-control" type="password" name="password" placeholder="Password"
+                           required id="password">
+                </div>
+                <button type="submit" class="btn btn-success btn-block">INGRESAR</button>
+
+                <div th:if="${param.error}" class="alert alert-danger" role="alert">
+                    <strong>Email o Contraseña Incorrectos</strong>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<br>
+<div th:replace="master/elements :: footer-fragment"></div>
+</body>
+</html>

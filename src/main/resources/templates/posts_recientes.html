@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <!-- Site made with Mobirise Website Builder v4.12.1, https://mobirise.com -->
+  <div th:replace="master/elements :: head-fragment"></div>
+  <meta name="description" content="Aqui los usuarios/visitantes podran visualizar los ultimos articulos subidos, ya que estan ordenados por fecha de creacion.">
+  
+  <title>Posts Recientes</title>
+</head>
+<body>
+
+<div th:replace="master/elements :: menu-fragment"></div>
+
+<div class="row m-3">
+    <div class="container">
+        <h3 class="text-center text-white">Buscar Un Post</h3>
+        <form th:action="@{/posts/buscar}" method="get">
+            <div class="form-group row">
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" name="titulo">
+                </div>
+                <div class="col-sm-4">
+                    <button type="submit" class="btn btn-primary">Buscar Post</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="container" th:if="${recientes.size()} > 0">
+    <h3 class="text-center text-white mt-5">Publicaciones Mas Recientes</h3>
+    <div class="row m-3">
+        <div class="col-md-4" th:each="post : ${recientes}">
+            <div class="card border-success">
+                <div class="card-body">
+                    <h4 class="card-title" th:text="${post.titulo}"></h4>
+                    <p class="card-text" th:text="${post.descripcion}"></p>
+                    <hr class="my-2">
+                    <p class="card-text">
+                        De <span th:text="${post.usuario.nombre}"></span>
+                    </p>
+                    <a class="btn btn-primary btn-block"
+                       th:href="@{/posts/detalles(id=${post.id})}" role="button">LEER POST</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:if="${recientes.isEmpty()}">
+    <h3 class="text-center text-white mt-5">No hay Posts Subidos a la Fecha</h3>
+</div>
+
+<div th:replace="master/elements :: footer-fragment"></div>
+</body>
+</html>
